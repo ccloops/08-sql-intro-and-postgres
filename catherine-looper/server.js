@@ -59,7 +59,7 @@ app.get('/articles', (request, response) => {
 
 app.post('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // The following line of code corresponds to steps 2 and 3 on the full-stack-diagram.png. The create part of CRUD is being enacted/managed by this particular piece of code. The method from Article.js being interacted with, is Article.prototype.insertRecord. The body referenced in the client.query method below refers to the contents of the request, not to be confused with the body property of the article object. 
+  // The following line of code corresponds to steps 2 and 3 on the full-stack-diagram.png. The create part of CRUD is being enacted/managed by this particular piece of code. The method from Article.js being interacted with, is Article.prototype.insertRecord. The body referenced in the client.query method below refers to the contents of the request, not to be confused with the body property of the article object.
 
   client.query(
     `INSERT INTO
@@ -85,7 +85,7 @@ app.post('/articles', (request, response) => {
 
 app.put('/articles/:id', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // The following line of code corresponds to step 3 in the full-stack-diagram.png. We are passing through a SQL query that updates a specific row in the database. This corresponds to the Article.prototype.updateRecord method from article.js. The methods uses a $.ajax request (jQuery ajax request) with the update method to retrieve and update a specific entry in the database/model. The update part of CRUD is being enacted/managed by this particular piece of code because it is updating the table.
   client.query(
     `UPDATE articles
     SET
@@ -112,7 +112,7 @@ app.put('/articles/:id', (request, response) => {
 
 app.delete('/articles/:id', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // The following line of code corresponds to step 3 in the full-stack-diagram since we are sending a request to delete the record from the database. This code interacts with the Article.prototype.deleteRecord method in article.js which uses $.ajax, a delete method and a specified id variable that is sent from the client side. The delete part of CRUD is being enacted/managed by this particular piece of code because it is deleting a record.
   client.query(
     `DELETE FROM articles WHERE article_id=$1;`,
     [request.params.id]
@@ -127,7 +127,7 @@ app.delete('/articles/:id', (request, response) => {
 
 app.delete('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // The following line of code corresponds to step 3 in the full-stack-diagram since we are sending a request to delete all of the articles from the database. This code interacts with the Article.prototype.deleteRecord method in article.js which uses $.ajax, a delete method and a specified id variable that is sent from the client side. The delete part of CRUD is being enacted/managed by this particular piece of code because it is deleting all of the articles.
   client.query(
     'DELETE FROM articles;'
   )
@@ -140,7 +140,7 @@ app.delete('/articles', (request, response) => {
 });
 
 // COMMENT: What is this function invocation doing?
-// PUT YOUR RESPONSE HERE
+// This function is declared at the end of this file, and is invoked to create a databse table if it doesn't exist. Then it loads the articles from the database by invoking loadArticles().
 loadDB();
 
 app.listen(PORT, () => {
@@ -152,7 +152,7 @@ app.listen(PORT, () => {
 ////////////////////////////////////////
 function loadArticles() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // The following code corresponds to steps 3 and 4 of the full-stack-diagram.png image. If the table is empty, it will read the json file with the article data in it and fill the SQL database with correctly parsed rows. This doesn't directly map to article.js, it just happens once the server is initialized. The create and read part of CRUD is being enacted/managed by this particular piece of code because it is reading to see if the database is empty, and if so it creates rows.
   client.query('SELECT COUNT(*) FROM articles')
     .then(result => {
     // REVIEW: result.rows is an array of objects that Postgres returns as a response to a query.
@@ -176,7 +176,7 @@ function loadArticles() {
 
 function loadDB() {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // The following code corresponds to step 3 in the full-stack-diagram.png image. Once the code runs then it invokes the loadArticles function.  The create part of CRUD is being enacted/managed by this particular piece of code because it creates a table if it does not exist.
   client.query(`
     CREATE TABLE IF NOT EXISTS articles (
       article_id SERIAL PRIMARY KEY,

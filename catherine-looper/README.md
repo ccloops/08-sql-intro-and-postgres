@@ -1,6 +1,6 @@
-07-nodejs-npm-express - Code 301, Day 8
+08-sql-intro-and-postgres - Code 301, Day 9
 
-Author: Seth Donohue and Catherine Looper
+Author: Catherine Looper
 
 Version: 1.8.0
 
@@ -37,11 +37,8 @@ We approached this design with a mobile first mindset. Then we used media querie
 Change Log
 ====
 
-11/1/17 9:00AM Started lab with Catherine as driver and Seth as navigator. Completed file tree set up and first 5 TODOS. Initialized npm and build out of server.
+11/2/17 9:00AM My partner was two hours late today, so I started working on my own, and collaborating with Joe and Andrew. 
 
-11/1/17 9:40AM Switched to Seth as driver and Catherine as navigator. Completed remaining TODOs and all COMMENTs.
-
-11/1/17 10:40AM Switched to Catherine as driver and Seth as navigator and completed README.
 
 Credits and Collaborations
 ====
