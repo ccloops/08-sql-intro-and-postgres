@@ -38,7 +38,7 @@ app.use(express.static('./public'));
 // REVIEW: Routes for requesting HTML resources
 app.get('/new', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // This app.get process is both step 2 and step 5 in the full-stack-diagram.png. The below line of code represents step 5, which is sending a response from the controller to the view, to display to the browser window. In this case, the function is handling a request to display '/new' and is responding with the new.html page. The read part of CRUD is being enacted/managed by this particular piece of code. 
+  // This app.get process is both step 2 and step 5 in the full-stack-diagram.png. The below line of code represents step 5, which is sending an HTTP response from the controller to the view, to display to the browser window. In this case, the function is handling a HTTP request to display '/new' and is responding with the new.html page. The read part of CRUD is being enacted/managed by this particular piece of code.
   response.sendFile('new.html', {root: './public'});
 });
 
@@ -46,7 +46,8 @@ app.get('/new', (request, response) => {
 // REVIEW: Routes for making API calls to use CRUD Operations on our database
 app.get('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // The below line of code represents steps 3, and 4 in the full-stack-diagram.png. This line of code is sending a SQL query for everything from the articles table from the controller to the model and sending a result back from the model to the controller. This makes it available to the /articles url which can be used by the fetchAll function to render it into the view. In this case, Article.js will use the Article.fetchAll method to get JSON from the '/articles' url in the root directory and load the results by calling loadAll and then continuing on to execute the callbacks. The read part of CRUD is being enacted/managed by this particular piece of code.
+
   client.query('SELECT * FROM articles')
     .then(function(result) {
       response.send(result.rows);
@@ -58,7 +59,8 @@ app.get('/articles', (request, response) => {
 
 app.post('/articles', (request, response) => {
   // COMMENT: What number(s) of the full-stack-diagram.png image correspond to the following line of code? Which method of article.js is interacting with this particular piece of `server.js`? What part of CRUD is being enacted/managed by this particular piece of code?
-  // PUT YOUR RESPONSE HERE
+  // The following line of code corresponds to steps 2 and 3 on the full-stack-diagram.png. The create part of CRUD is being enacted/managed by this particular piece of code. The method from Article.js being interacted with, is Article.prototype.insertRecord. The body referenced in the client.query method below refers to the contents of the request, not to be confused with the body property of the article object. 
+
   client.query(
     `INSERT INTO
     articles(title, author, "authorUrl", category, "publishedOn", body)
